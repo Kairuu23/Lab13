@@ -3,6 +3,17 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\PostController;
+
+
+use App\Http\Controllers\HomeController;
+
+use App\Http\Controllers\UserController;
+
+Route::middleware(['auth'])->group(function () {
+    Route::resource('posts', PostController::class);
+    Route::get('/profile', [UserController::class, 'profile'])->name('user.profile');
+});
 
 
 Route::get('/', function () {
